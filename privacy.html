@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XOX 2.0 - Gizlilik Politikası</title>
+    <title>XOX 2.0 - Privacy Policy</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,13 +15,13 @@
 
     <style>
         :root {
-            --bg-dark: #0f0d0b;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --border-color: rgba(255, 255, 255, 0.08);
+            --bg-gradient-top: #EEB532;
+            --bg-gradient-bottom: #D4941A;
+            --dark-color: #212121;
             --primary-amber: #E8A317;
-            --text-light: #F5F5F7;
-            --text-muted: #A1A1A6;
-            --transition-speed: 0.3s;
+            --piece-x: #E53935;
+            --white: #FFFFFF;
+            --transition-speed: 0.2s;
         }
 
         * {
@@ -32,11 +32,12 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background: linear-gradient(185deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+            color: var(--dark-color);
             line-height: 1.6;
+            min-height: 100vh;
             padding-bottom: 60px;
-            background-image: radial-gradient(circle at 10% 20%, rgba(232, 163, 23, 0.06) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
         .container {
@@ -47,9 +48,14 @@
 
         /* --- Header Section --- */
         header {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 4px solid var(--dark-color);
             margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-content {
@@ -61,17 +67,34 @@
         .logo {
             font-family: 'Bungee', cursive;
             font-size: 24px;
-            color: var(--primary-amber);
+            color: var(--white);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            -webkit-text-stroke: 2px var(--dark-color);
+            text-shadow: 2px 2px 0 var(--dark-color);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--dark-color);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .back-link {
-            color: var(--text-muted);
+            color: var(--dark-color);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 800;
+            font-family: 'Bungee', cursive;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -79,47 +102,105 @@
         }
 
         .back-link:hover {
-            color: var(--primary-amber);
+            color: var(--piece-x);
         }
 
-        /* --- Content --- */
+        /* --- Language Selector --- */
+        .lang-select-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-select {
+            font-family: 'Bungee', cursive;
+            font-size: 12px;
+            background-color: var(--white);
+            color: var(--dark-color);
+            border: 2px solid var(--dark-color);
+            border-bottom: 4px solid var(--dark-color);
+            border-radius: 10px;
+            padding: 6px 14px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 28px;
+        }
+
+        .lang-select-container::after {
+            content: "\f0d7";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--dark-color);
+        }
+
+        /* --- Content Layout --- */
+        .content-card {
+            background-color: var(--white);
+            border: 4px solid var(--dark-color);
+            border-bottom: 10px solid var(--dark-color);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
         h1 {
             font-family: 'Bungee', cursive;
             font-size: 32px;
-            margin-bottom: 24px;
-            color: var(--primary-amber);
-            border-bottom: 2px solid var(--primary-amber);
-            padding-bottom: 10px;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .last-update {
+            font-weight: 800;
+            color: var(--piece-x);
+            margin-bottom: 30px;
+            font-size: 15px;
+            text-transform: uppercase;
         }
 
         h2 {
             font-family: 'Bungee', cursive;
-            font-size: 20px;
-            margin: 32px 0 16px;
-            color: var(--text-light);
+            font-size: 18px;
+            margin: 30px 0 14px;
+            color: var(--dark-color);
+            border-bottom: 3px solid var(--dark-color);
+            padding-bottom: 6px;
         }
 
         p {
-            color: var(--text-muted);
+            color: #444;
             margin-bottom: 16px;
             font-size: 16px;
+            font-weight: 600;
         }
 
         ul {
             list-style-type: square;
-            margin-left: 20px;
-            margin-bottom: 16px;
-            color: var(--text-muted);
+            margin-left: 24px;
+            margin-bottom: 20px;
+            color: #444;
+            font-weight: 600;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .last-update {
-            font-style: italic;
-            color: var(--primary-amber);
-            margin-bottom: 40px;
+        a {
+            color: var(--piece-x);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -129,60 +210,188 @@
     <header>
         <div class="container header-content">
             <a href="index.html" class="logo">
-                <i class="fa-solid fa-gamepad"></i> XOX 2.0
+                <img src="icon_new.png" alt="XOX 2.0"> XOX 2.0
             </a>
-            <a href="index.html" class="back-link">
-                <i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön
-            </a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="back_home">Back to Home</span>
+                </a>
+                <div class="lang-select-container">
+                    <select id="lang-select" class="lang-select" onchange="changeLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="es">Español</option>
+                        <option value="zh">简体中文</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container">
-        <h1>Gizlilik Politikası</h1>
-        <p class="last-update">Son Güncelleme: 2 Temmuz 2026</p>
+        <div class="content-card">
+            <h1 data-i18n="privacy_title">Privacy Policy</h1>
+            <p class="last-update"><span data-i18n="last_updated">Last Updated: July 2, 2026</span></p>
 
-        <p>
-            Beyin Stüdyo olarak, <strong>"XOX 2.0"</strong> mobil oyunumuzu oynayan kullanıcılarımızın gizliliğine ve veri güvenliğine büyük önem veriyoruz. Bu gizlilik politikası, oyunumuzun hangi verileri topladığını, bunları nasıl kullandığını ve verilerinizi nasıl koruduğunu açıklamaktadır.
-        </p>
+            <p data-i18n="intro">
+                At Beyin Stüdyo, we value your privacy and security. This privacy policy explains what data we collect, how it is used, and how it is protected when you play XOX 2.0.
+            </p>
 
-        <h2>1. Toplanan Veriler ve Kullanım Amaçları</h2>
-        <p>
-            XOX 2.0 oyunu, temel olarak kullanıcı deneyimini iyileştirmek, çevrimiçi çok oyunculu (multiplayer) eşleşmeleri sağlamak ve skor tablosunu (leaderboard) yönetmek amacıyla asgari düzeyde veri işlemektedir:
-        </p>
-        <ul>
-            <li><strong>Kullanıcı Adı ve UID:</strong> Firebase Kimlik Doğrulama (Google Sign-In) aracılığıyla veya misafir olarak giriş yaptığınızda size özel bir UID (Benzersiz Kimlik) ve belirlediğiniz takma ad (Nickname) kaydedilir. Bu bilgi, skorlarınızı kaydetmek ve çevrimiçi odalarda sizi diğer oyunculara tanıtmak amacıyla kullanılır.</li>
-            <li><strong>Oyun İstatistikleri:</strong> Çevrimiçi ve çevrimdışı oynadığınız maç sayıları, galibiyet/mağlubiyet oranları ve toplam skorunuz liderlik tablosunu güncellemek amacıyla saklanır.</li>
-            <li><strong>Global Chat Mesajları:</strong> Sohbet sekmesinde gönderdiğiniz mesajlar, sohbetin işlevini yerine getirmesi için Realtime Database üzerinde saklanır. Küfür ve spam içerikli mesajlar sunucumuz tarafından otomatik olarak filtrelenebilir veya silinebilir.</li>
-        </ul>
+            <h2 data-i18n="sec1_title">1. Data Collection & Usage</h2>
+            <p data-i18n="sec1_desc">
+                XOX 2.0 processes minimal user data to provide multiplayer features, online matchmaking, and leaderboard services:
+            </p>
+            <ul>
+                <li data-i18n="s1_item1"><strong>Username & UID:</strong> Authenticating via Google Sign-In or guest login assigns a unique UID. This displays your nickname on the public leaderboards and in multiplayer games.</li>
+                <li data-i18n="s1_item2"><strong>Game Statistics:</strong> Match counts, win/loss stats, and total scores are stored to calculate leaderboard rankings.</li>
+                <li data-i18n="s1_item3"><strong>Chat Messages:</strong> Messages sent in the global chat are processed through Firebase Realtime Database. Spam and toxic texts are automatically filtered or deleted.</li>
+            </ul>
 
-        <h2>2. Reklamlar ve Üçüncü Taraf Servisler</h2>
-        <p>
-            Oyunumuzda gelir modeli ve analitik ölçümler amacıyla bazı güvenilir üçüncü taraf kütüphaneler kullanılmaktadır:
-        </p>
-        <ul>
-            <li><strong>Google AdMob:</strong> Oyun içerisinde size uygun reklamların gösterilmesi amacıyla cihaz kimliği (Ad-ID) gibi anonim veriler işleyebilir.</li>
-            <li><strong>Firebase Servisleri:</strong> Veritabanı barındırma, kullanıcı girişi ve anlık bildirim (Push Notification) servisleri Firebase altyapısı ile sağlanır.</li>
-        </ul>
+            <h2 data-i18n="sec2_title">2. Third-Party Services</h2>
+            <p data-i18n="sec2_desc">
+                Our game utilizes trusted third-party libraries for advertising and backend services:
+            </p>
+            <ul>
+                <li data-i18n="s2_item1"><strong>Google AdMob:</strong> Serves non-intrusive ads. AdMob may process anonymous identifiers (Ad-ID) to provide relevant advertisements.</li>
+                <li data-i18n="s2_item2"><strong>Firebase Services:</strong> Authentication, real-time database nodes, and push notifications are hosted securely on Google Firebase.</li>
+            </ul>
 
-        <h2>3. Veri Güvenliği</h2>
-        <p>
-            Toplanan tüm veriler Google Firebase sunucularında güvenli bir şekilde barındırılır. Yetkisiz erişimleri, veri kayıplarını ve kötüye kullanımı engellemek için Firebase Güvenlik Kuralları (Security Rules) ile erişimler sıkı bir şekilde denetlenmektedir.
-        </p>
+            <h2 data-i18n="sec3_title">3. Data Security</h2>
+            <p data-i18n="sec3_desc">
+                All player data is securely stored on Google Firebase servers. Access permissions are strictly managed using database security rules to prevent unauthorized access.
+            </p>
 
-        <h2>4. Kullanıcı Hakları ve Veri Silme</h2>
-        <p>
-            Dilediğiniz zaman oyun içi Ayarlar menüsünden profilinizi sıfırlayabilir veya tüm çevrimiçi istatistiklerinizin silinmesini talep edebilirsiniz. Sorularınız veya veri silme talepleriniz için bizimle iletişime geçebilirsiniz.
-        </p>
+            <h2 data-i18n="sec4_title">4. User Rights & Data Deletion</h2>
+            <p data-i18n="sec4_desc">
+                You can reset offline scores or request full account/profile deletion at any time via the in-game Settings menu. You may also contact us directly for deletion requests.
+            </p>
 
-        <h2>5. İletişim</h2>
-        <p>
-            Bu gizlilik politikası ile ilgili herhangi bir sorunuz olması durumunda lütfen bizimle iletişime geçin:
-        </p>
-        <p>
-            <strong>E-posta:</strong> <a href="mailto:info@beyinstudio.com" style="color: var(--primary-amber); text-decoration: none;">info@beyinstudio.com</a>
-        </p>
+            <h2 data-i18n="sec5_title">5. Contact Us</h2>
+            <p data-i18n="sec5_desc_mail">
+                For any privacy questions or data deletion requests, contact us at:
+            </p>
+            <p>
+                <strong>E-mail:</strong> <a href="mailto:info@beyinstudio.com">info@beyinstudio.com</a>
+            </p>
+        </div>
     </main>
 
+    <!-- Translation Script -->
+    <script>
+        const translations = {
+            en: {
+                back_home: "Back to Home",
+                privacy_title: "Privacy Policy",
+                last_updated: "Last Updated: July 2, 2026",
+                intro: "At Beyin Stüdyo, we value your privacy and security. This privacy policy explains what data we collect, how it is used, and how it is protected when you play XOX 2.0.",
+                sec1_title: "1. Data Collection & Usage",
+                sec1_desc: "XOX 2.0 processes minimal user data to provide multiplayer features, online matchmaking, and leaderboard services:",
+                s1_item1: "<strong>Username & UID:</strong> Authenticating via Google Sign-In or guest login assigns a unique UID. This displays your nickname on the public leaderboards and in multiplayer games.",
+                s1_item2: "<strong>Game Statistics:</strong> Match counts, win/loss stats, and total scores are stored to calculate leaderboard rankings.",
+                s1_item3: "<strong>Chat Messages:</strong> Messages sent in the global chat are processed through Firebase Realtime Database. Spam and toxic texts are automatically filtered or deleted.",
+                sec2_title: "2. Third-Party Services",
+                sec2_desc: "Our game utilizes trusted third-party libraries for advertising and backend services:",
+                s2_item1: "<strong>Google AdMob:</strong> Serves non-intrusive ads. AdMob may process anonymous identifiers (Ad-ID) to provide relevant advertisements.",
+                s2_item2: "<strong>Firebase Services:</strong> Authentication, real-time database nodes, and push notifications are hosted securely on Google Firebase.",
+                sec3_title: "3. Data Security",
+                sec3_desc: "All player data is securely stored on Google Firebase servers. Access permissions are strictly managed using database security rules to prevent unauthorized access.",
+                sec4_title: "4. User Rights & Data Deletion",
+                sec4_desc: "You can reset offline scores or request full account/profile deletion at any time via the in-game Settings menu. You may also contact us directly for deletion requests.",
+                sec5_title: "5. Contact Us",
+                sec5_desc_mail: "For any privacy questions or data deletion requests, contact us at:"
+            },
+            tr: {
+                back_home: "Ana Sayfaya Dön",
+                privacy_title: "Gizlilik Politikası",
+                last_updated: "Son Güncelleme: 2 Temmuz 2026",
+                intro: "Beyin Stüdyo olarak, kullanıcılarımızın gizliliğine ve güvenliğine büyük önem veriyoruz. Bu gizlilik politikası, XOX 2.0 oyununu oynarken hangi verileri topladığımızı, bu verilerin nasıl kullanıldığını ve nasıl korunduğunu açıklamaktadır.",
+                sec1_title: "1. Veri Toplama & Kullanım",
+                sec1_desc: "XOX 2.0, çok oyunculu özellikler, çevrimiçi eşleşmeler ve liderlik tablosu hizmetleri sunmak amacıyla asgari düzeyde kullanıcı verisi işler:",
+                s1_item1: "<strong>Kullanıcı Adı ve UID:</strong> Google Girişi veya misafir girişiyle kimlik doğrulandığında benzersiz bir UID atanır. Bu, takma adınızın genel liderlik tablolarında ve çok oyunculu oyunlarda gösterilmesini sağlar.",
+                s1_item2: "<strong>Oyun İstatistikleri:</strong> Liderlik tablosu sıralamalarını hesaplamak amacıyla maç sayıları, galibiyet/mağlubiyet istatistikleri ve toplam skorlar saklanır.",
+                s1_item3: "<strong>Sohbet Mesajları:</strong> Genel sohbette gönderilen mesajlar Firebase Realtime Database üzerinde işlenir. Spam ve uygunsuz metinler otomatik olarak filtrelenir veya silinir.",
+                sec2_title: "2. Üçüncü Taraf Hizmetleri",
+                sec2_desc: "Oyunumuz, reklam ve arka uç hizmetleri için güvenilir üçüncü taraf kütüphaneleri kullanır:",
+                s2_item1: "<strong>Google AdMob:</strong> Araya girmeyen reklamlar sunar. AdMob, ilgili reklamları sağlamak amacıyla anonim tanımlayıcıları (Ad-ID) işleyebilir.",
+                s2_item2: "<strong>Firebase Servisleri:</strong> Kimlik doğrulama, gerçek zamanlı veritabanı düğümleri ve anlık bildirimler Google Firebase üzerinde güvenle barındırılır.",
+                sec3_title: "3. Veri Güvenliği",
+                sec3_desc: "Tüm oyuncu verileri Google Firebase sunucularında güvenle saklanır. Yetkisiz erişimi önlemek için veritabanı güvenlik kuralları kullanılarak erişim izinleri sıkı bir şekilde yönetilir.",
+                sec4_title: "4. Kullanıcı Hakları ve Veri Silme",
+                sec4_desc: "Dilediğiniz zaman oyun içi Ayarlar menüsünden yerel skorları sıfırlayabilir veya profilinizin tamamen silinmesini talep edebilirsiniz. Silme talepleriniz için doğrudan bizimle iletişime geçebilirsiniz.",
+                sec5_title: "5. İletişim",
+                sec5_desc_mail: "Gizlilik sorularınız veya veri silme talepleriniz için bizimle iletişime geçin:"
+            },
+            es: {
+                back_home: "Volver al Inicio",
+                privacy_title: "Política de Privacidad",
+                last_updated: "Última Actualización: 2 de Julio de 2026",
+                intro: "En Beyin Stüdyo, valoramos su privacidad y seguridad. Esta política de privacidad explica qué datos recopilamos, cómo se utilizan y cómo se protegen cuando juegas XOX 2.0.",
+                sec1_title: "1. Recopilación y Uso de Datos",
+                sec1_desc: "XOX 2.0 procesa datos de usuario mínimos para proporcionar funciones multijugador, emparejamiento en línea y servicios de tabla de clasificación:",
+                s1_item1: "<strong>Usuario & UID:</strong> La autenticación a través de Google o el inicio de sesión de invitado asigna un UID único. Esto muestra tu apodo en las tablas de clasificación públicas y en los juegos multijugador.",
+                s1_item2: "<strong>Estadísticas del Juego:</strong> Los recuentos de partidos, las estadísticas de victorias/derrotas y los puntajes totales se almacenan para calcular las clasificaciones.",
+                s1_item3: "<strong>Mensajes de Chat:</strong> Los mensajes enviados en el chat global se procesan a través de Firebase Realtime Database. Los textos spam o inapropiados se filtran o eliminan automáticamente.",
+                sec2_title: "2. Servicios de Terceros",
+                sec2_desc: "Nuestro juego utiliza bibliotecas de terceros confiables para publicidad y servicios de backend:",
+                s2_item1: "<strong>Google AdMob:</strong> Ofrece anuncios no intrusivos. AdMob puede procesar identificadores anónimos (Ad-ID) para proporcionar anuncios relevantes.",
+                s2_item2: "<strong>Servicios de Firebase:</strong> La autenticación, los nodos de bases de datos en tiempo real y las notificaciones automáticas se alojan de forma segura en Google Firebase.",
+                sec3_title: "3. Seguridad de Datos",
+                sec3_desc: "Todos los datos de los jugadores se almacenan de forma segura en los servidores de Google Firebase. Los permisos de acceso se gestionan estrictamente utilizando reglas de seguridad para evitar accesos no autorizados.",
+                sec4_title: "4. Derechos del Usuario y Eliminación de Datos",
+                sec4_desc: "Puedes restablecer los puntajes locales o solicitar la eliminación total de tu perfil en cualquier momento a través del menú de Configuración del juego. También puedes contactarnos directamente para solicitudes de eliminación.",
+                sec5_title: "5. Contáctenos",
+                sec5_desc_mail: "Para cualquier pregunta sobre privacidad o solicitudes de eliminación de datos, contáctenos en:"
+            },
+            zh: {
+                back_home: "返回首页",
+                privacy_title: "隐私政策",
+                last_updated: "最近更新时间：2026年7月2日",
+                intro: "在 Beyin Stüdyo，我们非常重视您的隐私与数据安全。本隐私政策旨在向您说明在游玩 XOX 2.0 时，我们如何收集、使用以及保护您的数据。",
+                sec1_title: "1. 数据收集与使用",
+                sec1_desc: "XOX 2.0 仅处理最低限度的数据以支持多人联机对决、在线匹配和排行榜功能：",
+                s1_item1: "<strong>用户名及 UID：</strong> 通过 Google 登录或游客模式登录时将分配唯一的 UID。这用于在公共排行榜和多人游戏大厅中展示您的昵称。",
+                s1_item2: "<strong>游戏统计数据：</strong> 记录对局总数、胜负场次以及累积得分，以进行排行榜计算与排名展示。",
+                s1_item3: "<strong>聊天消息：</strong> 您在全局聊天室发送的信息将通过 Firebase 实时数据库传输并展示。我们会自动过滤垃圾或违规文本内容。",
+                sec2_title: "2. 第三方服务集成",
+                sec2_desc: "我们的游戏集成了安全可靠的的第三方广告和后端开发库：",
+                s2_item1: "<strong>Google AdMob：</strong> 展示非侵入式广告。AdMob 可能会处理匿名广告标识符 (Ad-ID) 以投放关联度更高的广告。",
+                s2_item2: "<strong>Firebase 服务：</strong> 玩家账号认证、实时数据库托管以及推送通知均安全依托于 Google Firebase 服务系统。",
+                sec3_title: "3. 数据安全保护",
+                sec3_desc: "所有玩家数据均安全存储于 Google Firebase 云服务器。我们利用数据库规则严格限制未经授权的数据读取与修改。",
+                sec4_title: "4. 用户权益与数据删除",
+                sec4_desc: "您随时可以通过游戏内的“设置”菜单重置本地分数，或请求完全注销并删除您的档案。您亦可直接联系我们协助清除数据。",
+                sec5_title: "5. 联系我们",
+                sec5_desc_mail: "如有任何有关隐私或数据删除的疑问，请通过以下邮箱与我们取得联系："
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('preferred_language', lang);
+            document.documentElement.lang = lang;
+            
+            const selectEl = document.getElementById('lang-select');
+            if (selectEl) selectEl.value = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            setLanguage(lang);
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language');
+            const browserLang = navigator.language.substring(0, 2);
+            const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
+            setLanguage(defaultLang);
+        });
+    </script>
 </body>
 </html>

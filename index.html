@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOX 2.0 - Beyin Stüdyo</title>
-    <meta name="description" content="XOX 2.0: Klasik Tic-Tac-Toe oyununu yepyeni taş istifleme ve ele geçirme mekanikleriyle, yapay zekaya ve çevrimiçi rakiplere karşı oynayın!">
+    <meta name="description" content="XOX 2.0: Stack & capture tic-tac-toe game. Play online or offline against Level 1-5 bots.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,15 +16,16 @@
 
     <style>
         :root {
-            --bg-dark: #0f0d0b;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --border-color: rgba(255, 255, 255, 0.08);
+            --bg-gradient-top: #EEB532;
+            --bg-gradient-bottom: #D4941A;
+            --dark-color: #212121;
             --primary-amber: #E8A317;
-            --primary-amber-glow: rgba(232, 163, 23, 0.4);
-            --primary-orange: #FF5722;
-            --text-light: #F5F5F7;
-            --text-muted: #A1A1A6;
-            --transition-speed: 0.3s;
+            --piece-x: #E53935;
+            --piece-x-dark: #B71C1C;
+            --piece-o: #1E88E5;
+            --piece-o-dark: #0D47A1;
+            --white: #FFFFFF;
+            --transition-speed: 0.2s;
         }
 
         * {
@@ -35,12 +36,11 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background: linear-gradient(185deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+            color: var(--dark-color);
             line-height: 1.6;
+            min-height: 100vh;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 10% 20%, rgba(232, 163, 23, 0.08) 0%, transparent 40%),
-                              radial-gradient(circle at 90% 80%, rgba(255, 87, 34, 0.08) 0%, transparent 40%);
             background-attachment: fixed;
         }
 
@@ -52,10 +52,10 @@
 
         /* --- Header Section --- */
         header {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            background: rgba(15, 13, 11, 0.7);
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 4px solid var(--dark-color);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -69,194 +69,237 @@
 
         .logo {
             font-family: 'Bungee', cursive;
-            font-size: 24px;
-            color: var(--primary-amber);
+            font-size: 26px;
+            color: var(--white);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
-            text-shadow: 0 0 10px var(--primary-amber-glow);
+            gap: 12px;
+            -webkit-text-stroke: 2px var(--dark-color);
+            text-shadow: 3px 3px 0 var(--dark-color);
         }
 
-        .logo i {
-            font-size: 28px;
+        .logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 3px solid var(--dark-color);
+            box-shadow: 2px 2px 0 var(--dark-color);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--dark-color);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 800;
+            font-family: 'Bungee', cursive;
+            font-size: 14px;
             transition: color var(--transition-speed);
+            -webkit-text-stroke: 0.5px var(--white);
         }
 
         .nav-links a:hover {
-            color: var(--primary-amber);
+            color: var(--piece-x);
+        }
+
+        /* --- Language Selector Dropdown --- */
+        .lang-select-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-select {
+            font-family: 'Bungee', cursive;
+            font-size: 13px;
+            background-color: var(--white);
+            color: var(--dark-color);
+            border: 3px solid var(--dark-color);
+            border-bottom: 5px solid var(--dark-color);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 32px;
+        }
+
+        .lang-select-container::after {
+            content: "\f0d7";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--dark-color);
         }
 
         /* --- Hero Section --- */
         .hero {
-            padding: 80px 0 60px;
+            padding: 60px 0 40px;
             text-align: center;
-            position: relative;
         }
 
         .hero-title {
             font-family: 'Bungee', cursive;
-            font-size: 64px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--primary-amber) 0%, var(--primary-orange) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(232, 163, 23, 0.15);
-            animation: float 4s ease-in-out infinite;
+            font-size: 72px;
+            color: var(--white);
+            -webkit-text-stroke: 4px var(--dark-color);
+            text-shadow: 6px 6px 0 var(--dark-color);
+            margin-bottom: 12px;
         }
 
         .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-muted);
-            max-width: 650px;
+            font-size: 22px;
+            font-weight: 800;
+            max-width: 750px;
             margin: 0 auto 36px;
-            font-weight: 400;
+            color: var(--dark-color);
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
         }
 
-        .cta-button {
+        /* Cartoon 3D Button Style */
+        .btn-3d {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, var(--primary-amber) 0%, var(--primary-orange) 100%);
-            color: var(--bg-dark);
+            background-color: var(--piece-x);
+            color: var(--white);
             text-decoration: none;
             padding: 16px 36px;
-            border-radius: 50px;
-            font-weight: 800;
+            border-radius: 20px;
+            font-family: 'Bungee', cursive;
             font-size: 18px;
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-            box-shadow: 0 10px 25px rgba(232, 163, 23, 0.3);
+            border: 4px solid var(--dark-color);
+            border-bottom: 9px solid var(--dark-color);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: all 0.1s ease;
             cursor: pointer;
-            border: none;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(232, 163, 23, 0.5);
+        .btn-3d:hover {
+            background-color: #ff4a46;
         }
 
-        .cta-button i {
-            font-size: 22px;
+        .btn-3d:active {
+            transform: translateY(4px);
+            border-bottom-width: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .btn-3d i {
+            font-size: 24px;
+        }
+
+        /* --- Gameplay Showcase --- */
+        .showcase {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .showcase-frame {
+            max-width: 680px;
+            margin: 0 auto;
+            border: 6px solid var(--dark-color);
+            border-bottom: 12px solid var(--dark-color);
+            border-radius: 32px;
+            background-color: var(--white);
+            overflow: hidden;
+            box-shadow: 0 20px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .showcase-frame img {
+            width: 100%;
+            display: block;
         }
 
         /* --- Features Section --- */
         .features {
-            padding: 80px 0;
-            position: relative;
+            padding: 60px 0;
         }
 
         .section-title {
             font-family: 'Bungee', cursive;
-            font-size: 32px;
+            font-size: 40px;
             text-align: center;
             margin-bottom: 48px;
-            color: var(--text-light);
+            color: var(--white);
+            -webkit-text-stroke: 2.5px var(--dark-color);
+            text-shadow: 4px 4px 0 var(--dark-color);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
         }
 
         .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            background: var(--white);
+            border: 4px solid var(--dark-color);
+            border-bottom: 10px solid var(--dark-color);
+            border-radius: 24px;
             padding: 32px;
             text-align: center;
-            transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
-            backdrop-filter: blur(8px);
+            transition: transform 0.1s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-amber);
-            box-shadow: 0 10px 20px rgba(232, 163, 23, 0.05);
+            transform: scale(1.03);
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(232, 163, 23, 0.1);
-            border-radius: 16px;
+            width: 72px;
+            height: 72px;
+            background: var(--primary-amber);
+            border: 4px solid var(--dark-color);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            color: var(--primary-amber);
-            font-size: 28px;
-            border: 1px solid rgba(232, 163, 23, 0.2);
+            color: var(--white);
+            font-size: 32px;
+            box-shadow: 3px 3px 0 var(--dark-color);
+        }
+
+        .feature-card.blue-theme .feature-icon {
+            background: var(--piece-o);
         }
 
         .feature-card h3 {
             font-family: 'Bungee', cursive;
             font-size: 18px;
-            margin-bottom: 12px;
-            color: var(--text-light);
+            margin-bottom: 14px;
+            color: var(--dark-color);
         }
 
         .feature-card p {
-            color: var(--text-muted);
+            color: #555;
             font-size: 15px;
+            font-weight: 600;
             line-height: 1.5;
-        }
-
-        /* --- Gameplay Video/Screenshot Section --- */
-        .gameplay {
-            padding: 60px 0 100px;
-            text-align: center;
-        }
-
-        .gameplay-container {
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 24px;
-            border: 3px solid #000;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 8px rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .gameplay-placeholder {
-            padding: 40px;
-        }
-
-        .gameplay-placeholder i {
-            font-size: 64px;
-            color: var(--primary-amber);
-            margin-bottom: 16px;
-        }
-
-        .gameplay-placeholder h3 {
-            font-family: 'Bungee', cursive;
-            margin-bottom: 8px;
         }
 
         /* --- Footer Section --- */
         footer {
-            background-color: #080706;
-            padding: 60px 0 30px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 14px;
+            background-color: var(--dark-color);
+            padding: 50px 0 30px;
+            color: var(--white);
+            border-top: 6px solid var(--white);
         }
 
         .footer-grid {
@@ -266,21 +309,19 @@
             margin-bottom: 40px;
         }
 
-        .footer-logo {
+        .footer-brand {
             font-family: 'Bungee', cursive;
-            font-size: 20px;
+            font-size: 22px;
             color: var(--primary-amber);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             display: block;
         }
 
         .footer-title {
-            color: var(--text-light);
-            font-weight: 800;
+            font-family: 'Bungee', cursive;
+            color: var(--white);
             margin-bottom: 16px;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1px;
+            font-size: 14px;
         }
 
         .footer-links {
@@ -288,12 +329,13 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: #bbb;
             text-decoration: none;
+            font-weight: 600;
             transition: color var(--transition-speed);
         }
 
@@ -302,28 +344,24 @@
         }
 
         .copyright-bar {
-            border-top: 1px solid var(--border-color);
+            border-top: 2px solid #333;
             padding-top: 30px;
             text-align: center;
+            font-weight: 600;
+            color: #888;
             font-size: 13px;
-        }
-
-        /* --- Animations --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
         }
 
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 44px;
+                font-size: 48px;
+                -webkit-text-stroke: 3px var(--dark-color);
             }
             .hero-subtitle {
                 font-size: 16px;
             }
             .nav-links {
-                display: none; /* Mobile menu fallback simplified */
+                display: none;
             }
         }
     </style>
@@ -334,13 +372,22 @@
     <header>
         <div class="container header-content">
             <a href="#" class="logo">
-                <i class="fa-solid fa-gamepad"></i> XOX 2.0
+                <img src="icon_new.png" alt="XOX 2.0"> XOX 2.0
             </a>
-            <ul class="nav-links">
-                <li><a href="#features">Özellikler</a></li>
-                <li><a href="#gameplay">Oynanış</a></li>
-                <li><a href="privacy.html">Gizlilik Politikası</a></li>
-            </ul>
+            <div class="header-controls">
+                <ul class="nav-links">
+                    <li><a href="#features" data-i18n="nav_features">Features</a></li>
+                    <li><a href="privacy.html" data-i18n="nav_privacy">Privacy Policy</a></li>
+                </ul>
+                <div class="lang-select-container">
+                    <select id="lang-select" class="lang-select" onchange="changeLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="es">Español</option>
+                        <option value="zh">简体中文</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -348,19 +395,28 @@
     <section class="hero">
         <div class="container">
             <h1 class="hero-title">XOX 2.0</h1>
-            <p class="hero-subtitle">
-                Klasik Tic-Tac-Toe deneyimini yepyeni taş istifleme, ele geçirme ve kombo mekanikleriyle baştan keşfedin!
+            <p class="hero-subtitle" data-i18n="hero_subtitle">
+                Classic Tic-Tac-Toe reimagined with stack, capture, and combo mechanics!
             </p>
-            <a href="#" class="cta-button">
-                <i class="fa-brands fa-google-play"></i> Google Play'den İndir
+            <a href="#" class="btn-3d">
+                <i class="fa-brands fa-google-play"></i> <span data-i18n="download_btn">Download on Google Play</span>
             </a>
+        </div>
+    </section>
+
+    <!-- Gameplay Showcase -->
+    <section class="showcase">
+        <div class="container">
+            <div class="showcase-frame">
+                <img src="gameplay_mockup.png" alt="XOX 2.0 Gameplay Mockup">
+            </div>
         </div>
     </section>
 
     <!-- Features -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">Oyun Özellikleri</h2>
+            <h2 class="section-title" data-i18n="features_title">Game Features</h2>
             <div class="features-grid">
                 
                 <!-- Feature 1 -->
@@ -368,17 +424,17 @@
                     <div class="feature-icon">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
-                    <h3>İstifleme & Ele Geçirme</h3>
-                    <p>Farklı taş türlerini üst üste koyarak rakibin taşını ele geçirin veya aynı türdeki taşları patlatarak tahtayı temizleyin!</p>
+                    <h3 data-i18n="f1_title">Stack & Capture</h3>
+                    <p data-i18n="f1_desc">Place your pieces on top of others to capture, or stack same-type pieces to trigger an explosion!</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="feature-card">
+                <div class="feature-card blue-theme">
                     <div class="feature-icon">
                         <i class="fa-solid fa-wifi"></i>
                     </div>
-                    <h3>Çevrimiçi Eşleşme</h3>
-                    <p>Firebase entegrasyonu sayesinde dünyanın dört bir yanındaki oyuncularla gerçek zamanlı, rekabetçi odalarda eşleşin.</p>
+                    <h3 data-i18n="f2_title">Online Matchmaking</h3>
+                    <p data-i18n="f2_desc">Instant real-time multiplayer matchmaking with global players via Firebase.</p>
                 </div>
 
                 <!-- Feature 3 -->
@@ -386,33 +442,19 @@
                     <div class="feature-icon">
                         <i class="fa-solid fa-robot"></i>
                     </div>
-                    <h3>Akıllı Botlar</h3>
-                    <p>Farklı zorluk seviyelerine (Level 1-5) sahip akıllı botlara karşı oynayarak taktiklerinizi geliştirin.</p>
+                    <h3 data-i18n="f3_title">Level 1-5 Bots</h3>
+                    <p data-i18n="f3_desc">Challenge smart offline bots with progressive difficulties from absolute beginner to master.</p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="feature-card">
+                <div class="feature-card blue-theme">
                     <div class="feature-icon">
                         <i class="fa-solid fa-face-smile"></i>
                     </div>
-                    <h3>Reaksiyon Emojileri</h3>
-                    <p>Oyun sırasında botlara ve diğer oyunculara gecikmeli, gerçekçi ve eğlenceli reaksiyon emojileri gönderin.</p>
+                    <h3 data-i18n="f4_title">Bot Reactions</h3>
+                    <p data-i18n="f4_desc">Experience human-like bot players that express delayed reaction emojis after game states.</p>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- Gameplay Preview -->
-    <section id="gameplay" class="gameplay">
-        <div class="container">
-            <h2 class="section-title">Oynanış Önizlemesi</h2>
-            <div class="gameplay-container">
-                <div class="gameplay-placeholder">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <h3>XOX 2.0 Heyecanı Çok Yakında</h3>
-                    <p style="color: var(--text-muted);">Akıllı telefonunuzda yepyeni 4x4 tahta düzenini deneyimleyin.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -421,29 +463,135 @@
     <footer>
         <div class="container footer-grid">
             <div>
-                <span class="footer-logo">BEYİN STÜDYO</span>
-                <p style="max-width: 250px;">Eğlenceli, dinamik ve yeni nesil mobil oyun deneyimleri üretir.</p>
+                <span class="footer-brand">Beyin Stüdyo</span>
+                <p style="color: #888; font-weight: 600;" data-i18n="footer_desc">Creating next-generation dynamic mobile games.</p>
             </div>
             <div>
-                <h4 class="footer-title">Bağlantılar</h4>
+                <h4 class="footer-title" data-i18n="footer_links_title">Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#features">Özellikler</a></li>
-                    <li><a href="#gameplay">Oynanış</a></li>
-                    <li><a href="privacy.html">Gizlilik Politikası</a></li>
+                    <li><a href="#features" data-i18n="nav_features">Features</a></li>
+                    <li><a href="privacy.html" data-i18n="nav_privacy">Privacy Policy</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">İletişim</h4>
+                <h4 class="footer-title" data-i18n="footer_contact_title">Contact</h4>
                 <ul class="footer-links">
                     <li><a href="mailto:info@beyinstudio.com">info@beyinstudio.com</a></li>
-                    <li><a href="#">beyinstudio.com</a></li>
                 </ul>
             </div>
         </div>
         <div class="container copyright-bar">
-            <p>&copy; 2026 Beyin Stüdyo. Tüm Hakları Saklıdır.</p>
+            <p>&copy; 2026 Beyin Stüdyo. <span data-i18n="rights_reserved">All Rights Reserved.</span></p>
         </div>
     </footer>
 
+    <!-- Translation Script -->
+    <script>
+        const translations = {
+            en: {
+                nav_features: "Features",
+                nav_privacy: "Privacy Policy",
+                hero_subtitle: "Classic Tic-Tac-Toe reimagined with stack, capture, and combo mechanics!",
+                download_btn: "Download on Google Play",
+                features_title: "Game Features",
+                f1_title: "Stack & Capture",
+                f1_desc: "Place your pieces on top of others to capture, or stack same-type pieces to trigger an explosion!",
+                f2_title: "Online Matchmaking",
+                f2_desc: "Instant real-time multiplayer matchmaking with global players via Firebase.",
+                f3_title: "Level 1-5 Bots",
+                f3_desc: "Challenge smart offline bots with progressive difficulties from absolute beginner to master.",
+                f4_title: "Bot Reactions",
+                f4_desc: "Experience human-like bot players that express delayed reaction emojis after game states.",
+                footer_desc: "Creating next-generation dynamic mobile games.",
+                footer_links_title: "Links",
+                footer_contact_title: "Contact",
+                rights_reserved: "All Rights Reserved."
+            },
+            tr: {
+                nav_features: "Özellikler",
+                nav_privacy: "Gizlilik Politikası",
+                hero_subtitle: "Klasik Tic-Tac-Toe yepyeni taş istifleme, ele geçirme ve kombo mekanikleriyle baştan tasarlandı!",
+                download_btn: "Google Play'den İndir",
+                features_title: "Oyun Özellikleri",
+                f1_title: "İstifleme & Ele Geçirme",
+                f1_desc: "Taşlarınızı diğerlerinin üzerine koyarak ele geçirin ya da aynı türdeki taşları istifleyip patlatarak tahtayı temizleyin!",
+                f2_title: "Çevrimiçi Eşleşme",
+                f2_desc: "Firebase altyapısıyla dünyanın dört bir yanındaki oyuncularla anında gerçek zamanlı eşleşin.",
+                f3_title: "Seviye 1-5 Botlar",
+                f3_desc: "Başlangıç seviyesinden usta seviyesine kadar kademeli zorluklardaki çevrimdışı botlara meydan okuyun.",
+                f4_title: "Bot Reaksiyonları",
+                f4_desc: "Oyun içi durumlara göre gerçekçi ve gecikmeli emojiler atan insansı botlarla oynayın.",
+                footer_desc: "Yeni nesil dinamik mobil oyun deneyimleri tasarlar.",
+                footer_links_title: "Bağlantılar",
+                footer_contact_title: "İletişim",
+                rights_reserved: "Tüm Hakları Saklıdır."
+            },
+            es: {
+                nav_features: "Características",
+                nav_privacy: "Política de Privacidad",
+                hero_subtitle: "¡El clásico Tic-Tac-Toe rediseñado con mecánicas de apilamiento, captura y combos!",
+                download_btn: "Descargar en Google Play",
+                features_title: "Características del Juego",
+                f1_title: "Apilar & Capturar",
+                f1_desc: "¡Coloca tus piezas sobre otras para capturarlas, o apila piezas del mismo tipo para detonar una explosión!",
+                f2_title: "Emparejamiento en Línea",
+                f2_desc: "Emparejamiento multijugador instantáneo en tiempo real con jugadores globales a través de Firebase.",
+                f3_title: "Bots Niveles 1-5",
+                f3_desc: "Desafía a bots inteligentes fuera de línea con dificultades progresivas desde principiante absoluto hasta maestro.",
+                f4_title: "Reacciones de Bot",
+                f4_desc: "Experimenta bots similares a los humanos que expresan emojis de reacción tardía después de cada movimiento.",
+                footer_desc: "Creando juegos móviles dinámicos de próxima generación.",
+                footer_links_title: "Enlaces",
+                footer_contact_title: "Contacto",
+                rights_reserved: "Todos los derechos reservados."
+            },
+            zh: {
+                nav_features: "游戏特点",
+                nav_privacy: "隐私政策",
+                hero_subtitle: "经典井字棋升级版！加入堆叠、占领和连消玩法！",
+                download_btn: "在 Google Play 下载",
+                features_title: "游戏特色",
+                f1_title: "堆叠与占领",
+                f1_desc: "将你的棋子叠加在他人之上以完成占领，或叠加同色棋子触发爆炸清屏！",
+                f2_title: "在线联机",
+                f2_desc: "通过 Firebase 平台与全球玩家进行即时、实时的多人联机对战。",
+                f3_title: "1-5 级人机",
+                f3_desc: "向离线智能 AI 挑战，包含从新手到大师的 5 种渐进难度等级。",
+                f4_title: "拟人化反应",
+                f4_desc: "逼真的 AI 对手，会在关键局势后发送带有延迟的拟人表情反馈。",
+                footer_desc: "打造下一代充满活力的移动端游戏体验。",
+                footer_links_title: "相关链接",
+                footer_contact_title: "联系我们",
+                rights_reserved: "保留所有权利。"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('preferred_language', lang);
+            document.documentElement.lang = lang;
+            
+            const selectEl = document.getElementById('lang-select');
+            if (selectEl) selectEl.value = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            setLanguage(lang);
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language');
+            const browserLang = navigator.language.substring(0, 2);
+            const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
+            setLanguage(defaultLang);
+        });
+    </script>
 </body>
 </html>
