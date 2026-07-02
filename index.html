@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOX 2.0 - Beyin Stüdyo</title>
-    <meta name="description" content="XOX 2.0: Stack & capture tic-tac-toe game. Play online or offline against Level 1-5 bots.">
+    <meta name="description" content="XOX 2.0: Stack & capture tic-tac-toe game. Play local matches, online matchmaking, or private room-code games with friends.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -352,6 +352,34 @@
             font-size: 13px;
         }
 
+        .delete-account-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            background-color: var(--white);
+            color: var(--dark-color);
+            text-decoration: none;
+            padding: 12px 22px;
+            border: 3px solid var(--dark-color);
+            border-bottom: 6px solid var(--dark-color);
+            border-radius: 16px;
+            font-family: 'Bungee', cursive;
+            font-size: 13px;
+            box-shadow: 0 4px 0 rgba(255, 255, 255, 0.2);
+            transition: transform 0.1s ease, border-bottom-width 0.1s ease;
+        }
+
+        .delete-account-btn:hover {
+            color: var(--piece-x);
+            transform: translateY(-2px);
+        }
+
+        .delete-account-btn:active {
+            transform: translateY(3px);
+            border-bottom-width: 3px;
+        }
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 48px;
@@ -431,19 +459,19 @@
                 <!-- Feature 3 -->
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fa-solid fa-robot"></i>
+                        <i class="fa-solid fa-user-group"></i>
                     </div>
-                    <h3 data-i18n="f3_title">Level 1-5 Bots</h3>
-                    <p data-i18n="f3_desc">Challenge smart offline bots with progressive difficulties from absolute beginner to master.</p>
+                    <h3 data-i18n="f3_title">Play With Friends</h3>
+                    <p data-i18n="f3_desc">Create a private room code, invite a friend, and prove your strategy on the 4x4 board.</p>
                 </div>
 
                 <!-- Feature 4 -->
                 <div class="feature-card blue-theme">
                     <div class="feature-icon">
-                        <i class="fa-solid fa-face-smile"></i>
+                        <i class="fa-solid fa-ranking-star"></i>
                     </div>
-                    <h3 data-i18n="f4_title">Bot Reactions</h3>
-                    <p data-i18n="f4_desc">Experience human-like bot players that express delayed reaction emojis after game states.</p>
+                    <h3 data-i18n="f4_title">Score Competition</h3>
+                    <p data-i18n="f4_desc">Track your wins, points, and match performance while climbing the leaderboard.</p>
                 </div>
 
             </div>
@@ -462,6 +490,7 @@
                 <ul class="footer-links">
                     <li><a href="#features" data-i18n="nav_features">Features</a></li>
                     <li><a href="privacy.html" data-i18n="nav_privacy">Privacy Policy</a></li>
+                    <li><a href="delete-account.html" data-i18n="nav_delete">Account & Data Deletion</a></li>
                 </ul>
             </div>
             <div>
@@ -473,6 +502,10 @@
         </div>
         <div class="container copyright-bar">
             <p>&copy; 2026 Beyin Stüdyo. <span data-i18n="rights_reserved">All Rights Reserved.</span></p>
+            <a href="delete-account.html" class="delete-account-btn">
+                <i class="fa-solid fa-user-slash"></i>
+                <span data-i18n="delete_account_btn">Account & Data Deletion</span>
+            </a>
         </div>
     </footer>
 
@@ -482,6 +515,7 @@
             en: {
                 nav_features: "Features",
                 nav_privacy: "Privacy Policy",
+                nav_delete: "Account & Data Deletion",
                 hero_subtitle: "Classic Tic-Tac-Toe reimagined with stack, capture, and combo mechanics!",
                 download_btn: "Download on Google Play",
                 features_title: "Game Features",
@@ -489,18 +523,20 @@
                 f1_desc: "Place your pieces on top of others to capture, or stack same-type pieces to trigger an explosion!",
                 f2_title: "Online Matchmaking",
                 f2_desc: "Instant real-time multiplayer matchmaking with global players via Firebase.",
-                f3_title: "Level 1-5 Bots",
-                f3_desc: "Challenge smart offline bots with progressive difficulties from absolute beginner to master.",
-                f4_title: "Bot Reactions",
-                f4_desc: "Experience human-like bot players that express delayed reaction emojis after game states.",
+                f3_title: "Play With Friends",
+                f3_desc: "Create a private room code, invite a friend, and prove your strategy on the 4x4 board.",
+                f4_title: "Score Competition",
+                f4_desc: "Track your wins, points, and match performance while climbing the leaderboard.",
                 footer_desc: "Creating next-generation dynamic mobile games.",
                 footer_links_title: "Links",
                 footer_contact_title: "Contact",
+                delete_account_btn: "Account & Data Deletion",
                 rights_reserved: "All Rights Reserved."
             },
             tr: {
                 nav_features: "Özellikler",
                 nav_privacy: "Gizlilik Politikası",
+                nav_delete: "Hesap ve Veri Silme",
                 hero_subtitle: "Klasik Tic-Tac-Toe yepyeni taş istifleme, ele geçirme ve kombo mekanikleriyle baştan tasarlandı!",
                 download_btn: "Google Play'den İndir",
                 features_title: "Oyun Özellikleri",
@@ -508,18 +544,20 @@
                 f1_desc: "Taşlarınızı diğerlerinin üzerine koyarak ele geçirin ya da aynı türdeki taşları istifleyip patlatarak tahtayı temizleyin!",
                 f2_title: "Çevrimiçi Eşleşme",
                 f2_desc: "Firebase altyapısıyla dünyanın dört bir yanındaki oyuncularla anında gerçek zamanlı eşleşin.",
-                f3_title: "Seviye 1-5 Botlar",
-                f3_desc: "Başlangıç seviyesinden usta seviyesine kadar kademeli zorluklardaki çevrimdışı botlara meydan okuyun.",
-                f4_title: "Bot Reaksiyonları",
-                f4_desc: "Oyun içi durumlara göre gerçekçi ve gecikmeli emojiler atan insansı botlarla oynayın.",
+                f3_title: "Arkadaşlarla Oyna",
+                f3_desc: "Özel oda kodu oluşturun, arkadaşınızı davet edin ve 4x4 tahtada stratejinizi kanıtlayın.",
+                f4_title: "Skor Rekabeti",
+                f4_desc: "Galibiyetlerinizi, puanlarınızı ve maç performansınızı takip ederek liderlik tablosunda yükselin.",
                 footer_desc: "Yeni nesil dinamik mobil oyun deneyimleri tasarlar.",
                 footer_links_title: "Bağlantılar",
                 footer_contact_title: "İletişim",
+                delete_account_btn: "Hesap ve Veri Silme",
                 rights_reserved: "Tüm Hakları Saklıdır."
             },
             es: {
                 nav_features: "Características",
                 nav_privacy: "Política de Privacidad",
+                nav_delete: "Eliminación de Cuenta y Datos",
                 hero_subtitle: "¡El clásico Tic-Tac-Toe rediseñado con mecánicas de apilamiento, captura y combos!",
                 download_btn: "Descargar en Google Play",
                 features_title: "Características del Juego",
@@ -527,18 +565,20 @@
                 f1_desc: "¡Coloca tus piezas sobre otras para capturarlas, o apila piezas del mismo tipo para detonar una explosión!",
                 f2_title: "Emparejamiento en Línea",
                 f2_desc: "Emparejamiento multijugador instantáneo en tiempo real con jugadores globales a través de Firebase.",
-                f3_title: "Bots Niveles 1-5",
-                f3_desc: "Desafía a bots inteligentes fuera de línea con dificultades progresivas desde principiante absoluto hasta maestro.",
-                f4_title: "Reacciones de Bot",
-                f4_desc: "Experimenta bots similares a los humanos que expresan emojis de reacción tardía después de cada movimiento.",
+                f3_title: "Juega con Amigos",
+                f3_desc: "Crea un código de sala privado, invita a un amigo y demuestra tu estrategia en el tablero 4x4.",
+                f4_title: "Competencia de Puntos",
+                f4_desc: "Sigue tus victorias, puntos y rendimiento mientras subes en la clasificación.",
                 footer_desc: "Creando juegos móviles dinámicos de próxima generación.",
                 footer_links_title: "Enlaces",
                 footer_contact_title: "Contacto",
+                delete_account_btn: "Eliminar Cuenta y Datos",
                 rights_reserved: "Todos los derechos reservados."
             },
             zh: {
                 nav_features: "游戏特点",
                 nav_privacy: "隐私政策",
+                nav_delete: "账号与数据删除",
                 hero_subtitle: "经典井字棋升级版！加入堆叠、占领和连消玩法！",
                 download_btn: "在 Google Play 下载",
                 features_title: "游戏特色",
@@ -546,13 +586,14 @@
                 f1_desc: "将你的棋子叠加在他人之上以完成占领，或叠加同色棋子触发爆炸清屏！",
                 f2_title: "在线联机",
                 f2_desc: "通过 Firebase 平台与全球玩家进行即时、实时的多人联机对战。",
-                f3_title: "1-5 级人机",
-                f3_desc: "向离线智能 AI 挑战，包含从新手到大师的 5 种渐进难度等级。",
-                f4_title: "拟人化反应",
-                f4_desc: "逼真的 AI 对手，会在关键局势后发送带有延迟的拟人表情反馈。",
+                f3_title: "与好友对战",
+                f3_desc: "创建私人房间代码，邀请好友，在 4x4 棋盘上证明你的策略。",
+                f4_title: "积分竞争",
+                f4_desc: "追踪胜利、积分和比赛表现，并冲击排行榜更高名次。",
                 footer_desc: "打造下一代充满活力的移动端游戏体验。",
                 footer_links_title: "相关链接",
                 footer_contact_title: "联系我们",
+                delete_account_btn: "账号与数据删除",
                 rights_reserved: "保留所有权利。"
             }
         };
