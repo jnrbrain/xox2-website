@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOX 2.0 - Gizlilik Politikası</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0f0d0b;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary-amber: #E8A317;
+            --text-light: #F5F5F7;
+            --text-muted: #A1A1A6;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(232, 163, 23, 0.06) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header Section --- */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bungee', cursive;
+            font-size: 24px;
+            color: var(--primary-amber);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition-speed);
+        }
+
+        .back-link:hover {
+            color: var(--primary-amber);
+        }
+
+        /* --- Content --- */
+        h1 {
+            font-family: 'Bungee', cursive;
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: var(--primary-amber);
+            border-bottom: 2px solid var(--primary-amber);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-family: 'Bungee', cursive;
+            font-size: 20px;
+            margin: 32px 0 16px;
+            color: var(--text-light);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .last-update {
+            font-style: italic;
+            color: var(--primary-amber);
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-gamepad"></i> XOX 2.0
+            </a>
+            <a href="index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Gizlilik Politikası</h1>
+        <p class="last-update">Son Güncelleme: 2 Temmuz 2026</p>
+
+        <p>
+            Beyin Stüdyo olarak, <strong>"XOX 2.0"</strong> mobil oyunumuzu oynayan kullanıcılarımızın gizliliğine ve veri güvenliğine büyük önem veriyoruz. Bu gizlilik politikası, oyunumuzun hangi verileri topladığını, bunları nasıl kullandığını ve verilerinizi nasıl koruduğunu açıklamaktadır.
+        </p>
+
+        <h2>1. Toplanan Veriler ve Kullanım Amaçları</h2>
+        <p>
+            XOX 2.0 oyunu, temel olarak kullanıcı deneyimini iyileştirmek, çevrimiçi çok oyunculu (multiplayer) eşleşmeleri sağlamak ve skor tablosunu (leaderboard) yönetmek amacıyla asgari düzeyde veri işlemektedir:
+        </p>
+        <ul>
+            <li><strong>Kullanıcı Adı ve UID:</strong> Firebase Kimlik Doğrulama (Google Sign-In) aracılığıyla veya misafir olarak giriş yaptığınızda size özel bir UID (Benzersiz Kimlik) ve belirlediğiniz takma ad (Nickname) kaydedilir. Bu bilgi, skorlarınızı kaydetmek ve çevrimiçi odalarda sizi diğer oyunculara tanıtmak amacıyla kullanılır.</li>
+            <li><strong>Oyun İstatistikleri:</strong> Çevrimiçi ve çevrimdışı oynadığınız maç sayıları, galibiyet/mağlubiyet oranları ve toplam skorunuz liderlik tablosunu güncellemek amacıyla saklanır.</li>
+            <li><strong>Global Chat Mesajları:</strong> Sohbet sekmesinde gönderdiğiniz mesajlar, sohbetin işlevini yerine getirmesi için Realtime Database üzerinde saklanır. Küfür ve spam içerikli mesajlar sunucumuz tarafından otomatik olarak filtrelenebilir veya silinebilir.</li>
+        </ul>
+
+        <h2>2. Reklamlar ve Üçüncü Taraf Servisler</h2>
+        <p>
+            Oyunumuzda gelir modeli ve analitik ölçümler amacıyla bazı güvenilir üçüncü taraf kütüphaneler kullanılmaktadır:
+        </p>
+        <ul>
+            <li><strong>Google AdMob:</strong> Oyun içerisinde size uygun reklamların gösterilmesi amacıyla cihaz kimliği (Ad-ID) gibi anonim veriler işleyebilir.</li>
+            <li><strong>Firebase Servisleri:</strong> Veritabanı barındırma, kullanıcı girişi ve anlık bildirim (Push Notification) servisleri Firebase altyapısı ile sağlanır.</li>
+        </ul>
+
+        <h2>3. Veri Güvenliği</h2>
+        <p>
+            Toplanan tüm veriler Google Firebase sunucularında güvenli bir şekilde barındırılır. Yetkisiz erişimleri, veri kayıplarını ve kötüye kullanımı engellemek için Firebase Güvenlik Kuralları (Security Rules) ile erişimler sıkı bir şekilde denetlenmektedir.
+        </p>
+
+        <h2>4. Kullanıcı Hakları ve Veri Silme</h2>
+        <p>
+            Dilediğiniz zaman oyun içi Ayarlar menüsünden profilinizi sıfırlayabilir veya tüm çevrimiçi istatistiklerinizin silinmesini talep edebilirsiniz. Sorularınız veya veri silme talepleriniz için bizimle iletişime geçebilirsiniz.
+        </p>
+
+        <h2>5. İletişim</h2>
+        <p>
+            Bu gizlilik politikası ile ilgili herhangi bir sorunuz olması durumunda lütfen bizimle iletişime geçin:
+        </p>
+        <p>
+            <strong>E-posta:</strong> <a href="mailto:info@beyinstudio.com" style="color: var(--primary-amber); text-decoration: none;">info@beyinstudio.com</a>
+        </p>
+    </main>
+
+</body>
+</html>

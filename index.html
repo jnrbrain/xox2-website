@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOX 2.0 - Beyin Stüdyo</title>
+    <meta name="description" content="XOX 2.0: Klasik Tic-Tac-Toe oyununu yepyeni taş istifleme ve ele geçirme mekanikleriyle, yapay zekaya ve çevrimiçi rakiplere karşı oynayın!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0f0d0b;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary-amber: #E8A317;
+            --primary-amber-glow: rgba(232, 163, 23, 0.4);
+            --primary-orange: #FF5722;
+            --text-light: #F5F5F7;
+            --text-muted: #A1A1A6;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(232, 163, 23, 0.08) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(255, 87, 34, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header Section --- */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            background: rgba(15, 13, 11, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bungee', cursive;
+            font-size: 24px;
+            color: var(--primary-amber);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px var(--primary-amber-glow);
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-amber);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Bungee', cursive;
+            font-size: 64px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary-amber) 0%, var(--primary-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(232, 163, 23, 0.15);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 36px;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary-amber) 0%, var(--primary-orange) 100%);
+            color: var(--bg-dark);
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 18px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 10px 25px rgba(232, 163, 23, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(232, 163, 23, 0.5);
+        }
+
+        .cta-button i {
+            font-size: 22px;
+        }
+
+        /* --- Features Section --- */
+        .features {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Bungee', cursive;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 48px;
+            color: var(--text-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
+            backdrop-filter: blur(8px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-amber);
+            box-shadow: 0 10px 20px rgba(232, 163, 23, 0.05);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(232, 163, 23, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-amber);
+            font-size: 28px;
+            border: 1px solid rgba(232, 163, 23, 0.2);
+        }
+
+        .feature-card h3 {
+            font-family: 'Bungee', cursive;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* --- Gameplay Video/Screenshot Section --- */
+        .gameplay {
+            padding: 60px 0 100px;
+            text-align: center;
+        }
+
+        .gameplay-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 24px;
+            border: 3px solid #000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 8px rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .gameplay-placeholder {
+            padding: 40px;
+        }
+
+        .gameplay-placeholder i {
+            font-size: 64px;
+            color: var(--primary-amber);
+            margin-bottom: 16px;
+        }
+
+        .gameplay-placeholder h3 {
+            font-family: 'Bungee', cursive;
+            margin-bottom: 8px;
+        }
+
+        /* --- Footer Section --- */
+        footer {
+            background-color: #080706;
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Bungee', cursive;
+            font-size: 20px;
+            color: var(--primary-amber);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .footer-title {
+            color: var(--text-light);
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-amber);
+        }
+
+        .copyright-bar {
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 44px;
+            }
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            .nav-links {
+                display: none; /* Mobile menu fallback simplified */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-gamepad"></i> XOX 2.0
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#gameplay">Oynanış</a></li>
+                <li><a href="privacy.html">Gizlilik Politikası</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">XOX 2.0</h1>
+            <p class="hero-subtitle">
+                Klasik Tic-Tac-Toe deneyimini yepyeni taş istifleme, ele geçirme ve kombo mekanikleriyle baştan keşfedin!
+            </p>
+            <a href="#" class="cta-button">
+                <i class="fa-brands fa-google-play"></i> Google Play'den İndir
+            </a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Oyun Özellikleri</h2>
+            <div class="features-grid">
+                
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3>İstifleme & Ele Geçirme</h3>
+                    <p>Farklı taş türlerini üst üste koyarak rakibin taşını ele geçirin veya aynı türdeki taşları patlatarak tahtayı temizleyin!</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+                    <h3>Çevrimiçi Eşleşme</h3>
+                    <p>Firebase entegrasyonu sayesinde dünyanın dört bir yanındaki oyuncularla gerçek zamanlı, rekabetçi odalarda eşleşin.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3>Akıllı Botlar</h3>
+                    <p>Farklı zorluk seviyelerine (Level 1-5) sahip akıllı botlara karşı oynayarak taktiklerinizi geliştirin.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <h3>Reaksiyon Emojileri</h3>
+                    <p>Oyun sırasında botlara ve diğer oyunculara gecikmeli, gerçekçi ve eğlenceli reaksiyon emojileri gönderin.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gameplay Preview -->
+    <section id="gameplay" class="gameplay">
+        <div class="container">
+            <h2 class="section-title">Oynanış Önizlemesi</h2>
+            <div class="gameplay-container">
+                <div class="gameplay-placeholder">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3>XOX 2.0 Heyecanı Çok Yakında</h3>
+                    <p style="color: var(--text-muted);">Akıllı telefonunuzda yepyeni 4x4 tahta düzenini deneyimleyin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <span class="footer-logo">BEYİN STÜDYO</span>
+                <p style="max-width: 250px;">Eğlenceli, dinamik ve yeni nesil mobil oyun deneyimleri üretir.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Bağlantılar</h4>
+                <ul class="footer-links">
+                    <li><a href="#features">Özellikler</a></li>
+                    <li><a href="#gameplay">Oynanış</a></li>
+                    <li><a href="privacy.html">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">İletişim</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@beyinstudio.com">info@beyinstudio.com</a></li>
+                    <li><a href="#">beyinstudio.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright-bar">
+            <p>&copy; 2026 Beyin Stüdyo. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
