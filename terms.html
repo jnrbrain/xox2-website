@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOX 2.0 - Terms of Service</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient-top: #EEB532;
+            --bg-gradient-bottom: #D4941A;
+            --dark-color: #212121;
+            --primary-amber: #E8A317;
+            --piece-x: #E53935;
+            --white: #FFFFFF;
+            --transition-speed: 0.2s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(185deg, var(--bg-gradient-top) 0%, var(--bg-gradient-bottom) 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 60px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header Section --- */
+        header {
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-bottom: 4px solid var(--dark-color);
+            margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bungee', cursive;
+            font-size: 24px;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            -webkit-text-stroke: 2px var(--dark-color);
+            text-shadow: 2px 2px 0 var(--dark-color);
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--dark-color);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 800;
+            font-family: 'Bungee', cursive;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color var(--transition-speed);
+        }
+
+        .back-link:hover {
+            color: var(--piece-x);
+        }
+
+        /* --- Language Selector --- */
+        .lang-select-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-select {
+            font-family: 'Bungee', cursive;
+            font-size: 12px;
+            background-color: var(--white);
+            color: var(--dark-color);
+            border: 2px solid var(--dark-color);
+            border-bottom: 4px solid var(--dark-color);
+            border-radius: 10px;
+            padding: 6px 14px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 28px;
+        }
+
+        .lang-select-container::after {
+            content: "\f0d7";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--dark-color);
+        }
+
+        /* --- Content Layout --- */
+        .content-card {
+            background-color: var(--white);
+            border: 4px solid var(--dark-color);
+            border-bottom: 10px solid var(--dark-color);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-family: 'Bungee', cursive;
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .last-update {
+            font-weight: 800;
+            color: var(--piece-x);
+            margin-bottom: 30px;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: 'Bungee', cursive;
+            font-size: 18px;
+            margin: 30px 0 14px;
+            color: var(--dark-color);
+            border-bottom: 3px solid var(--dark-color);
+            padding-bottom: 6px;
+        }
+
+        p {
+            color: #444;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 24px;
+            margin-bottom: 20px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--piece-x);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="icon_new.png" alt="XOX 2.0"> XOX 2.0
+            </a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="back_home">Back to Home</span>
+                </a>
+                <div class="lang-select-container">
+                    <select id="lang-select" class="lang-select" onchange="changeLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="es">Español</option>
+                        <option value="zh">简体中文</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="content-card">
+            <h1 data-i18n="terms_title">Terms of Service</h1>
+            <p class="last-update"><span data-i18n="last_updated">Last Updated: July 11, 2026</span></p>
+
+            <p data-i18n="intro">
+                Welcome to XOX 2.0! By downloading, installing, or playing our game, you agree to comply with these Terms of Service. Please read them carefully.
+            </p>
+
+            <h2 data-i18n="sec1_title">1. Acceptance of Terms</h2>
+            <p data-i18n="sec1_desc">
+                By accessing or using XOX 2.0, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree, you must not use the game.
+            </p>
+
+            <h2 data-i18n="sec2_title">2. User Accounts</h2>
+            <p data-i18n="sec2_desc">
+                To access certain features (online multiplayer, leaderboards, achievements), you may need to create an account using:
+            </p>
+            <ul>
+                <li data-i18n="s2_item1"><strong>Google Sign-In:</strong> Your Google account credentials are used for authentication via Firebase.</li>
+                <li data-i18n="s2_item2"><strong>Guest Mode:</strong> Provides limited functionality without full account features.</li>
+            </ul>
+            <p data-i18n="sec2_note">
+                You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.
+            </p>
+
+            <h2 data-i18n="sec3_title">3. Game Rules & Fair Play</h2>
+            <p data-i18n="sec3_desc">
+                When playing XOX 2.0, you agree to:
+            </p>
+            <ul>
+                <li data-i18n="s3_item1">Play fairly and not use cheats, hacks, exploits, or third-party tools to gain unfair advantages.</li>
+                <li data-i18n="s3_item2">Respect other players and not engage in harassment, hate speech, or toxic behavior.</li>
+                <li data-i18n="s3_item3">Not spam the global chat or send inappropriate content.</li>
+            </ul>
+            <p data-i18n="sec3_note">
+                Violations may result in account suspension, score reset, or permanent ban.
+            </p>
+
+            <h2 data-i18n="sec4_title">4. Intellectual Property</h2>
+            <p data-i18n="sec4_desc">
+                All content in XOX 2.0, including but not limited to graphics, sound effects, music, code, and gameplay mechanics, is owned by Beyin Stüdyo or its licensors. You may not:
+            </p>
+            <ul>
+                <li data-i18n="s4_item1">Copy, modify, distribute, or reverse-engineer any part of the game.</li>
+                <li data-i18n="s4_item2">Use game assets in your own projects without written permission.</li>
+                <li data-i18n="s4_item3">Remove or alter copyright notices or trademarks.</li>
+            </ul>
+
+            <h2 data-i18n="sec5_title">5. In-App Advertisements</h2>
+            <p data-i18n="sec5_desc">
+                XOX 2.0 is free to play and supported by ads provided by Google AdMob. By using the game, you agree to view ads as part of the gameplay experience.
+            </p>
+
+            <h2 data-i18n="sec6_title">6. Limitation of Liability</h2>
+            <p data-i18n="sec6_desc">
+                XOX 2.0 is provided "as is" without warranties of any kind. Beyin Stüdyo is not liable for:
+            </p>
+            <ul>
+                <li data-i18n="s6_item1">Any loss of data, progress, or in-game achievements.</li>
+                <li data-i18n="s6_item2">Interruptions, server downtime, or bugs.</li>
+                <li data-i18n="s6_item3">Indirect, incidental, or consequential damages arising from your use of the game.</li>
+            </ul>
+
+            <h2 data-i18n="sec7_title">7. Modifications to Terms</h2>
+            <p data-i18n="sec7_desc">
+                We reserve the right to modify these Terms of Service at any time. Changes will be posted on this page with an updated "Last Updated" date. Continued use of the game after changes constitutes acceptance of the new terms.
+            </p>
+
+            <h2 data-i18n="sec8_title">8. Termination</h2>
+            <p data-i18n="sec8_desc">
+                We reserve the right to suspend or terminate your account at any time for violations of these terms or for any reason we deem necessary to protect the integrity of the game.
+            </p>
+
+            <h2 data-i18n="sec9_title">9. Governing Law</h2>
+            <p data-i18n="sec9_desc">
+                These Terms of Service are governed by the laws of Turkey. Any disputes arising from these terms shall be resolved in the courts of Turkey.
+            </p>
+
+            <h2 data-i18n="sec10_title">10. Contact Us</h2>
+            <p data-i18n="sec10_desc">
+                If you have any questions about these Terms of Service, please contact us at:
+            </p>
+            <p>
+                <strong>E-mail:</strong> <a href="mailto:m.saiduludag@gmail.com">m.saiduludag@gmail.com</a>
+                <br>
+                <a href="privacy.html" data-i18n="privacy_link">Privacy Policy</a> | <a href="delete-account.html" data-i18n="delete_link">Account Deletion</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Translation Script -->
+    <script>
+        const translations = {
+            en: {
+                back_home: "Back to Home",
+                terms_title: "Terms of Service",
+                last_updated: "Last Updated: July 11, 2026",
+                intro: "Welcome to XOX 2.0! By downloading, installing, or playing our game, you agree to comply with these Terms of Service. Please read them carefully.",
+                sec1_title: "1. Acceptance of Terms",
+                sec1_desc: "By accessing or using XOX 2.0, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree, you must not use the game.",
+                sec2_title: "2. User Accounts",
+                sec2_desc: "To access certain features (online multiplayer, leaderboards, achievements), you may need to create an account using:",
+                s2_item1: "<strong>Google Sign-In:</strong> Your Google account credentials are used for authentication via Firebase.",
+                s2_item2: "<strong>Guest Mode:</strong> Provides limited functionality without full account features.",
+                sec2_note: "You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.",
+                sec3_title: "3. Game Rules & Fair Play",
+                sec3_desc: "When playing XOX 2.0, you agree to:",
+                s3_item1: "Play fairly and not use cheats, hacks, exploits, or third-party tools to gain unfair advantages.",
+                s3_item2: "Respect other players and not engage in harassment, hate speech, or toxic behavior.",
+                s3_item3: "Not spam the global chat or send inappropriate content.",
+                sec3_note: "Violations may result in account suspension, score reset, or permanent ban.",
+                sec4_title: "4. Intellectual Property",
+                sec4_desc: "All content in XOX 2.0, including but not limited to graphics, sound effects, music, code, and gameplay mechanics, is owned by Beyin Stüdyo or its licensors. You may not:",
+                s4_item1: "Copy, modify, distribute, or reverse-engineer any part of the game.",
+                s4_item2: "Use game assets in your own projects without written permission.",
+                s4_item3: "Remove or alter copyright notices or trademarks.",
+                sec5_title: "5. In-App Advertisements",
+                sec5_desc: "XOX 2.0 is free to play and supported by ads provided by Google AdMob. By using the game, you agree to view ads as part of the gameplay experience.",
+                sec6_title: "6. Limitation of Liability",
+                sec6_desc: "XOX 2.0 is provided \"as is\" without warranties of any kind. Beyin Stüdyo is not liable for:",
+                s6_item1: "Any loss of data, progress, or in-game achievements.",
+                s6_item2: "Interruptions, server downtime, or bugs.",
+                s6_item3: "Indirect, incidental, or consequential damages arising from your use of the game.",
+                sec7_title: "7. Modifications to Terms",
+                sec7_desc: "We reserve the right to modify these Terms of Service at any time. Changes will be posted on this page with an updated \"Last Updated\" date. Continued use of the game after changes constitutes acceptance of the new terms.",
+                sec8_title: "8. Termination",
+                sec8_desc: "We reserve the right to suspend or terminate your account at any time for violations of these terms or for any reason we deem necessary to protect the integrity of the game.",
+                sec9_title: "9. Governing Law",
+                sec9_desc: "These Terms of Service are governed by the laws of Turkey. Any disputes arising from these terms shall be resolved in the courts of Turkey.",
+                sec10_title: "10. Contact Us",
+                sec10_desc: "If you have any questions about these Terms of Service, please contact us at:",
+                privacy_link: "Privacy Policy",
+                delete_link: "Account Deletion"
+            },
+            tr: {
+                back_home: "Ana Sayfaya Dön",
+                terms_title: "Hizmet Şartları",
+                last_updated: "Son Güncelleme: 11 Temmuz 2026",
+                intro: "XOX 2.0'a hoş geldiniz! Oyunumuzu indirerek, yükleyerek veya oynayarak bu Hizmet Şartlarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.",
+                sec1_title: "1. Şartların Kabulü",
+                sec1_desc: "XOX 2.0'ı kullanarak, bu Hizmet Şartlarını ve Gizlilik Politikamızı okuduğunuzu, anladığınızı ve bunlara bağlı kalmayı kabul ettiğinizi beyan edersiniz. Kabul etmiyorsanız, oyunu kullanmamalısınız.",
+                sec2_title: "2. Kullanıcı Hesapları",
+                sec2_desc: "Belirli özelliklere (çevrimiçi çok oyunculu, liderlik tabloları, başarımlar) erişmek için aşağıdaki yöntemlerle hesap oluşturmanız gerekebilir:",
+                s2_item1: "<strong>Google Girişi:</strong> Google hesap bilgileriniz Firebase üzerinden kimlik doğrulama için kullanılır.",
+                s2_item2: "<strong>Misafir Modu:</strong> Tam hesap özellikleri olmadan sınırlı işlevsellik sağlar.",
+                sec2_note: "Hesabınızın gizliliğini korumak ve hesabınız altında gerçekleşen tüm aktivitelerden sorumlu olmak sizin sorumluluğunuzdadır.",
+                sec3_title: "3. Oyun Kuralları ve Adil Oyun",
+                sec3_desc: "XOX 2.0'ı oynarken şunları kabul edersiniz:",
+                s3_item1: "Adil oynamak ve haksız avantaj elde etmek için hile, hack, exploit veya üçüncü taraf araçlar kullanmamak.",
+                s3_item2: "Diğer oyunculara saygı göstermek ve taciz, nefret söylemi veya toksik davranışlarda bulunmamak.",
+                s3_item3: "Global sohbete spam göndermemek veya uygunsuz içerik paylaşmamak.",
+                sec3_note: "İhlaller hesap askıya alma, skor sıfırlama veya kalıcı yasaklanma ile sonuçlanabilir.",
+                sec4_title: "4. Fikri Mülkiyet",
+                sec4_desc: "XOX 2.0'daki tüm içerik, grafikler, ses efektleri, müzik, kod ve oynanış mekanikleri dahil ancak bunlarla sınırlı olmamak üzere Beyin Stüdyo veya lisans sahiplerinin mülkiyetindedir. Şunları yapamazsınız:",
+                s4_item1: "Oyunun herhangi bir bölümünü kopyalama, değiştirme, dağıtma veya tersine mühendislik yapma.",
+                s4_item2: "Yazılı izin olmadan oyun varlıklarını kendi projelerinizde kullanma.",
+                s4_item3: "Telif hakkı bildirimlerini veya ticari markaları kaldırma veya değiştirme.",
+                sec5_title: "5. Uygulama İçi Reklamlar",
+                sec5_desc: "XOX 2.0 ücretsiz olarak oynanabilir ve Google AdMob tarafından sağlanan reklamlarla desteklenmektedir. Oyunu kullanarak, oyun deneyiminin bir parçası olarak reklamları görüntülemeyi kabul edersiniz.",
+                sec6_title: "6. Sorumluluk Sınırlaması",
+                sec6_desc: "XOX 2.0 \"olduğu gibi\" herhangi bir garanti olmaksızın sağlanmaktadır. Beyin Stüdyo şunlardan sorumlu değildir:",
+                s6_item1: "Veri, ilerleme veya oyun içi başarımların kaybı.",
+                s6_item2: "Kesintiler, sunucu arızaları veya hatalar.",
+                s6_item3: "Oyunu kullanımınızdan kaynaklanan dolaylı, arızi veya sonuç olarak ortaya çıkan zararlar.",
+                sec7_title: "7. Şartlarda Değişiklikler",
+                sec7_desc: "Bu Hizmet Şartlarını herhangi bir zamanda değiştirme hakkını saklı tutarız. Değişiklikler, güncellenmiş \"Son Güncelleme\" tarihi ile bu sayfada yayınlanacaktır. Değişikliklerden sonra oyunu kullanmaya devam etmek, yeni şartları kabul ettiğiniz anlamına gelir.",
+                sec8_title: "8. Sonlandırma",
+                sec8_desc: "Bu şartların ihlali veya oyunun bütünlüğünü korumak için gerekli gördüğümüz herhangi bir nedenle hesabınızı askıya alma veya sonlandırma hakkını saklı tutarız.",
+                sec9_title: "9. Geçerli Hukuk",
+                sec9_desc: "Bu Hizmet Şartları Türkiye yasalarına tabidir. Bu şartlardan kaynaklanan herhangi bir uyuşmazlık Türkiye mahkemelerinde çözülecektir.",
+                sec10_title: "10. İletişim",
+                sec10_desc: "Bu Hizmet Şartları hakkında sorularınız varsa, lütfen bizimle iletişime geçin:",
+                privacy_link: "Gizlilik Politikası",
+                delete_link: "Hesap Silme"
+            },
+            es: {
+                back_home: "Volver al Inicio",
+                terms_title: "Términos de Servicio",
+                last_updated: "Última Actualización: 11 de Julio de 2026",
+                intro: "¡Bienvenido a XOX 2.0! Al descargar, instalar o jugar nuestro juego, aceptas cumplir con estos Términos de Servicio. Por favor, léelos detenidamente.",
+                sec1_title: "1. Aceptación de los Términos",
+                sec1_desc: "Al acceder o usar XOX 2.0, reconoces que has leído, entendido y aceptas estar sujeto a estos Términos de Servicio y nuestra Política de Privacidad. Si no estás de acuerdo, no debes usar el juego.",
+                sec2_title: "2. Cuentas de Usuario",
+                sec2_desc: "Para acceder a ciertas funciones (multijugador en línea, tablas de clasificación, logros), es posible que necesites crear una cuenta utilizando:",
+                s2_item1: "<strong>Inicio de sesión de Google:</strong> Tus credenciales de cuenta de Google se utilizan para la autenticación a través de Firebase.",
+                s2_item2: "<strong>Modo Invitado:</strong> Proporciona funcionalidad limitada sin características completas de cuenta.",
+                sec2_note: "Eres responsable de mantener la confidencialidad de tu cuenta y de todas las actividades que ocurran bajo tu cuenta.",
+                sec3_title: "3. Reglas del Juego y Juego Limpio",
+                sec3_desc: "Al jugar XOX 2.0, aceptas:",
+                s3_item1: "Jugar limpiamente y no usar trucos, hacks, exploits o herramientas de terceros para obtener ventajas injustas.",
+                s3_item2: "Respetar a otros jugadores y no participar en acoso, discurso de odio o comportamiento tóxico.",
+                s3_item3: "No hacer spam en el chat global ni enviar contenido inapropiado.",
+                sec3_note: "Las violaciones pueden resultar en suspensión de cuenta, reinicio de puntuación o prohibición permanente.",
+                sec4_title: "4. Propiedad Intelectual",
+                sec4_desc: "Todo el contenido en XOX 2.0, incluyendo pero no limitado a gráficos, efectos de sonido, música, código y mecánicas de juego, es propiedad de Beyin Stüdyo o sus licenciantes. No puedes:",
+                s4_item1: "Copiar, modificar, distribuir o hacer ingeniería inversa de cualquier parte del juego.",
+                s4_item2: "Usar activos del juego en tus propios proyectos sin permiso por escrito.",
+                s4_item3: "Eliminar o alterar avisos de derechos de autor o marcas comerciales.",
+                sec5_title: "5. Publicidad en la Aplicación",
+                sec5_desc: "XOX 2.0 es gratuito y está respaldado por anuncios proporcionados por Google AdMob. Al usar el juego, aceptas ver anuncios como parte de la experiencia de juego.",
+                sec6_title: "6. Limitación de Responsabilidad",
+                sec6_desc: "XOX 2.0 se proporciona \"tal cual\" sin garantías de ningún tipo. Beyin Stüdyo no es responsable de:",
+                s6_item1: "Cualquier pérdida de datos, progreso o logros en el juego.",
+                s6_item2: "Interrupciones, tiempo de inactividad del servidor o errores.",
+                s6_item3: "Daños indirectos, incidentales o consecuentes derivados del uso del juego.",
+                sec7_title: "7. Modificaciones a los Términos",
+                sec7_desc: "Nos reservamos el derecho de modificar estos Términos de Servicio en cualquier momento. Los cambios se publicarán en esta página con una fecha de \"Última Actualización\" actualizada. El uso continuado del juego después de los cambios constituye la aceptación de los nuevos términos.",
+                sec8_title: "8. Terminación",
+                sec8_desc: "Nos reservamos el derecho de suspender o terminar tu cuenta en cualquier momento por violaciones de estos términos o por cualquier razón que consideremos necesaria para proteger la integridad del juego.",
+                sec9_title: "9. Ley Aplicable",
+                sec9_desc: "Estos Términos de Servicio se rigen por las leyes de Turquía. Cualquier disputa que surja de estos términos se resolverá en los tribunales de Turquía.",
+                sec10_title: "10. Contáctenos",
+                sec10_desc: "Si tienes alguna pregunta sobre estos Términos de Servicio, contáctanos en:",
+                privacy_link: "Política de Privacidad",
+                delete_link: "Eliminación de Cuenta"
+            },
+            zh: {
+                back_home: "返回首页",
+                terms_title: "服务条款",
+                last_updated: "最近更新时间：2026年7月11日",
+                intro: "欢迎来到 XOX 2.0！通过下载、安装或游玩我们的游戏，您同意遵守这些服务条款。请仔细阅读。",
+                sec1_title: "1. 接受条款",
+                sec1_desc: "通过访问或使用 XOX 2.0，您确认已阅读、理解并同意受这些服务条款和我们的隐私政策的约束。如果您不同意，则不得使用该游戏。",
+                sec2_title: "2. 用户账号",
+                sec2_desc: "要访问某些功能（在线多人游戏、排行榜、成就），您可能需要使用以下方式创建账号：",
+                s2_item1: "<strong>Google 登录：</strong>您的 Google 账号凭据通过 Firebase 用于身份验证。",
+                s2_item2: "<strong>访客模式：</strong>提供有限功能，无完整账号特性。",
+                sec2_note: "您有责任维护账号的机密性，并对账号下发生的所有活动负责。",
+                sec3_title: "3. 游戏规则与公平游戏",
+                sec3_desc: "在游玩 XOX 2.0 时，您同意：",
+                s3_item1: "公平游戏，不使用作弊、破解、漏洞利用或第三方工具获取不公平优势。",
+                s3_item2: "尊重其他玩家，不参与骚扰、仇恨言论或有毒行为。",
+                s3_item3: "不在全局聊天中发送垃圾信息或不当内容。",
+                sec3_note: "违规行为可能导致账号暂停、分数重置或永久封禁。",
+                sec4_title: "4. 知识产权",
+                sec4_desc: "XOX 2.0 中的所有内容，包括但不限于图形、音效、音乐、代码和游戏机制，均由 Beyin Stüdyo 或其许可方拥有。您不得：",
+                s4_item1: "复制、修改、分发或逆向工程游戏的任何部分。",
+                s4_item2: "未经书面许可在您自己的项目中使用游戏资产。",
+                s4_item3: "删除或更改版权声明或商标。",
+                sec5_title: "5. 应用内广告",
+                sec5_desc: "XOX 2.0 是免费游戏，由 Google AdMob 提供的广告支持。使用游戏即表示您同意将观看广告作为游戏体验的一部分。",
+                sec6_title: "6. 责任限制",
+                sec6_desc: "XOX 2.0 按「现状」提供，不提供任何形式的保证。Beyin Stüdyo 不对以下情况承担责任：",
+                s6_item1: "任何数据、进度或游戏内成就的丢失。",
+                s6_item2: "中断、服务器停机或错误。",
+                s6_item3: "因使用游戏而产生的间接、附带或后果性损害。",
+                sec7_title: "7. 条款修改",
+                sec7_desc: "我们保留随时修改这些服务条款的权利。更改将在本页面上发布，并更新「最近更新」日期。在更改后继续使用游戏即表示接受新条款。",
+                sec8_title: "8. 终止",
+                sec8_desc: "我们保留随时因违反这些条款或我们认为必要保护游戏完整性的任何原因而暂停或终止您的账号的权利。",
+                sec9_title: "9. 适用法律",
+                sec9_desc: "这些服务条款受土耳其法律管辖。因这些条款引起的任何争议应在土耳其法院解决。",
+                sec10_title: "10. 联系我们",
+                sec10_desc: "如果您对这些服务条款有任何疑问，请通过以下方式联系我们：",
+                privacy_link: "隐私政策",
+                delete_link: "账号删除"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('preferred_language', lang);
+            document.documentElement.lang = lang;
+
+            const selectEl = document.getElementById('lang-select');
+            if (selectEl) selectEl.value = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            setLanguage(lang);
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language');
+            const browserLang = navigator.language.substring(0, 2);
+            const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'en');
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+</html>
