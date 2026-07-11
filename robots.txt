@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jnrbrain.github.io/xox2-website/sitemap.xml
